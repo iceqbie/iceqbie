@@ -1,0 +1,35 @@
+# Keep "Latest posts" and "Papers" in README.md in step with iceqbie.github.io.
+# Reads the site's public data/*.json; needs no secrets.
+name: Update posts and papers
+
+on:
+  schedule:
+    - cron: "23 21 * * *"   # daily, 06:23 JST
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-readme
+  cancel-in-progress: true
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fill README from the site's data
+        run: python3 scripts/update_readme.py
+
+      - name: Commit if README changed
+        run: |
+          if git diff --quiet -- README.md; then
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git commit -m "Update posts and papers from the site"
+          git push
