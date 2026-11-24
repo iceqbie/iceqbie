@@ -17,6 +17,9 @@ GITHUB_TOKEN; no personal access token is needed.
   repositories, on a log scale (1, 10, 100, 1K, 10K).
 - Pie (bottom left): commits by the repository's main language, public
   repositories only, top five plus "other".
+- Animation: each day's cubes drop into place once, week by week from left to
+  right, finishing within 2.6 s. It is CSS inside the SVG and only runs under
+  prefers-reduced-motion: no-preference; otherwise the image is still.
 
 The output has no timestamps, so it only changes when the data does. If the
 data can't be read, the image is left alone.
@@ -70,7 +73,12 @@ CSS = """
 .gap{stroke:#0D1117}
 .other{fill:#5C6268}
 }
+@keyframes drop{from{transform:translateY(-24px);opacity:0}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion: no-preference){
+.d{animation:drop .6s cubic-bezier(.2,.8,.3,1) both}
+}
 """
+DROP_SPREAD = 2.0  # s from the first week's cubes to the last week's; each drop takes 0.6 s
 
 # Layout in drawing units; the SVG is shown at 2× (1280×850, like yoshi389111's profile images).
 W, H, ZOOM = 640, 425, 2
@@ -170,7 +178,9 @@ def calendar_svg(cal):
         t = math.sqrt(n / most)
         level = LEVELS.get(d.get("contributionLevel"), 0) or max(1, math.ceil(4 * t))
         colour = ramp(t)
-        body.append(f'<g><title>{d["date"]}: {n} contribution{"" if n == 1 else "s"}</title>'
+        delay = DROP_SPREAD * col / max(1, len(cal["weeks"]) - 1)
+        body.append(f'<g class="d" style="animation-delay:{delay:.2f}s">'
+                    f'<title>{d["date"]}: {n} contribution{"" if n == 1 else "s"}</title>'
                     + "".join(cube(p0, k * (CUBE + GAP), colour) for k in range(level)) + "</g>")
     return "".join(body)
 
