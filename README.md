@@ -19,10 +19,7 @@ and on running it well on real hardware.
   <img alt="Python, C, C++, Git, GitHub Actions, HTML, CSS, JavaScript" src="https://skillicons.dev/icons?i=python,c,cpp,git,githubactions,html,css,js&theme=light">
 </picture>
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/ice-contrib-dark.svg">
-  <img alt="Contributions over the last year, drawn as stacked ice cubes: more cubes and a deeper blue mean more contributions that day. Top right, a radar of commits, issues, pull requests, reviews and new repositories; bottom left, a pie of commits by language" src="assets/ice-contrib-light.svg">
-</picture>
+<img alt="Contributions over the last year, drawn as stacked ice cubes: more cubes and a deeper blue mean more contributions that day. Top right, a radar of commits, issues, pull requests, reviews and new repositories; bottom left, a pie of commits by language" src="assets/ice-contrib.svg">
 
 ### Latest posts
 <!-- posts:start -->
