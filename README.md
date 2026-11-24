@@ -1,5 +1,7 @@
 # (ice)^3
 
+**[iceqbie.github.io](https://iceqbie.github.io/)** · [日本語](https://iceqbie.github.io/jp/)
+
 Graduate student in space plasma physics at the University of Tokyo
 (Department of Earth and Planetary Science), working on numerical simulation
 and on running it well on real hardware.
@@ -15,6 +17,11 @@ and on running it well on real hardware.
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://skillicons.dev/icons?i=python,c,cpp,git,githubactions,html,css,js&theme=dark">
   <img alt="Python, C, C++, Git, GitHub Actions, HTML, CSS, JavaScript" src="https://skillicons.dev/icons?i=python,c,cpp,git,githubactions,html,css,js&theme=light">
+</picture>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/ice-contrib-dark.svg">
+  <img alt="Contributions over the last year, drawn as stacked ice cubes: more cubes and a deeper blue mean more contributions that day" src="assets/ice-contrib-light.svg">
 </picture>
 
 ### Latest posts

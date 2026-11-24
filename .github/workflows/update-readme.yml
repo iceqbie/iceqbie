@@ -1,5 +1,7 @@
-# Keep "Latest posts" and "Papers" in README.md in step with iceqbie.github.io.
-# Reads the site's public data/*.json; needs no secrets.
+# Keep "Latest posts" and "Papers" in README.md in step with iceqbie.github.io,
+# and redraw the ice-cube contribution calendar in assets/.
+# Reads the site's public data/*.json and the GraphQL API with the workflow's own
+# GITHUB_TOKEN; needs no other secrets.
 name: Update posts and papers
 
 on:
@@ -23,13 +25,18 @@ jobs:
       - name: Fill README from the site's data
         run: python3 scripts/update_readme.py
 
-      - name: Commit if README changed
+      - name: Draw the contribution calendar as ice cubes
+        run: python3 scripts/ice_contrib.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit if README or the images changed
         run: |
-          if git diff --quiet -- README.md; then
+          if [ -z "$(git status --porcelain -- README.md assets)" ]; then
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add README.md
-          git commit -m "Update posts and papers from the site"
+          git add README.md assets
+          git commit -m "Update posts, papers and contribution cubes"
           git push
