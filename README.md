@@ -21,7 +21,7 @@ and on running it well on real hardware.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/ice-contrib-dark.svg">
-  <img alt="Contributions over the last year, drawn as stacked ice cubes: more cubes and a deeper blue mean more contributions that day" src="assets/ice-contrib-light.svg">
+  <img alt="Contributions over the last year, drawn as stacked ice cubes: more cubes and a deeper blue mean more contributions that day. Top right, a radar of commits, issues, pull requests, reviews and new repositories; bottom left, a pie of commits by language" src="assets/ice-contrib-light.svg">
 </picture>
 
 ### Latest posts
